@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Mvc.Grid.Models.Personel>
+@using GridMvc.Html
+@{
+    ViewBag.Title = "Listele";
+}
+
+<h2>Listele</h2>
+@Html.ActionLink("Ekle", "Ekle", "Grid", null, new { @class = "btn btn-primary" })
+
+@Html.Grid(Model).Columns(column=>
+{
+    column.Add(m => m.Ad).Titled("Adlar").Sortable(true).Filterable(true);
+    column.Add(m => m.Soyad).Titled("Soyadlar").Sortable(true).Filterable(true);
+    column.Add(m => m.Yas).Titled("Yaşlar").Sortable(true).Filterable(true);
+    column.Add()
+    .Encoded(false)
+    .Sanitized(false)
+    .SetWidth(30)
+    .RenderValueAs(o => Html.ActionLink("Duzenle", "Duzenle", new { id = o.Id }, new { @class = "btn btn-warning" }));
+    column.Add()
+    .Encoded(false)
+    .Sanitized(false)
+    .SetWidth(30)
+    .RenderValueAs(o => Html.ActionLink("Sil", "Sil", new { id = o.Id }, new { @class = "btn btn-danger" }));
+}).WithPaging(10)
+

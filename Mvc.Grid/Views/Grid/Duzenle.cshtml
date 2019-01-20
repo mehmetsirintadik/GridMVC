@@ -1,0 +1,37 @@
+﻿@model Mvc.Grid.Models.Personel
+@{
+    ViewBag.Title = "Duzenle";
+}
+
+<h2>Duzenle</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="input-group">
+        <span class="input-group-append" id="txt_ad"><i class="glyphicon glyphicon-user"></i></span>
+        @Html.TextBoxFor(m => m.Ad, new { @class = "form-control", placeholder = "Adınızı Giriniz", aria_describedby = "txt_ad" })
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-append" id="txt_soyad"><i class="glyphicon glyphicon-user"></i></span>
+        @Html.TextBoxFor(m => m.Soyad, new { @class = "form-control", placeholder = "Soyadınızı Giriniz", aria_describedby = "txt_soyad" })
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-append" id="txt_yas"><i class="glyphicon glyphicon-time"></i></span>
+        @Html.TextBoxFor(m => m.Yas, new { @class = "form-control", placeholder = "Yaşınızı Giriniz", aria_describedby = "txt_yas" })
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-append" id="txt_ulke"><i class="glyphicon glyphicon-globe"></i></span>
+        @Html.DropDownListFor(m => m.Ulke.id, (List<SelectListItem>)ViewBag.Ulkeler, new { @class = "form-control", aria_describedby = "txt_ulke" })
+    </div>
+    <br />
+
+    <input type="submit" class="btn btn-success" value="Kaydet"/>
+
+    @Html.HiddenFor(m=>m.Id)
+
+}
+
+
